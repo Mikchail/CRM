@@ -6,18 +6,9 @@
       orderIds: [122,22,66,21]
     },
 
-    orders: [
-      {
-      id: 1,
-      fullname: 'Михаил резниченко',
-      good: 'Бумага для принтера',
-      price: 500,
-      status: 'new',
-      date: Date.now()
-    }
-  ]
+    orders: []
   }
-
+  load()
   const api = new EventEmitter
   api.getOrderById = function(id){
     const order = database.orders.find(x=> x.id === id)
@@ -42,16 +33,34 @@
     else {
       database.lastReviewed.orderIds = [orderId,...database.lastReviewed.orderIds].slice(0,database.lastReviewed.maxLength)
     }
+
+    save()
     api.emit("update")
 
   }
   api.seed = function seed(orders){
     database.orders = getCopy(orders)
+    save()
+    api.emit("update")
   }
   window.Database = api
 
 
   function getCopy(x){
     return JSON.parse(JSON.stringify(x))
+  }
+
+
+  function save(){
+    localStorage.setItem('__CRM_DATABASE__',JSON.stringify(database))
+  }
+  function load(){
+   
+
+    if(localStorage.getItem('__CRM_DATABASE__')){
+      Object.assign(database,JSON.parse(localStorage.getItem('__CRM_DATABASE__')))
+      console.log(database);
+    }
+    
   }
 })()

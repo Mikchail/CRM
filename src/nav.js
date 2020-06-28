@@ -7,7 +7,7 @@ function updateLastReviewedList(){
     reviewedListElement.innerHTML = ''
     for(const order of orders){
         const liElement = template.cloneNode(true)
-        liElement.innerHTML = liElement.innerHTML.replace(/%FULLNAME%/,order.fullname)
+        liElement.innerHTML = liElement.innerHTML.replace(/%FULLNAME%/g,order.fullname).replace(/%ID%/g,order.id)
         reviewedListElement.append(liElement)
     }
     
