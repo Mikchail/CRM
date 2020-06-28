@@ -5,7 +5,7 @@
       maxLength: 4,
       orderIds: [122,22,66,21]
     },
-
+    maxOrders: 10,
     orders: []
   }
   load()
@@ -43,6 +43,22 @@
     save()
     api.emit("update")
   }
+
+
+  api.getOrders = function getOrders(state){
+    state = getCopy(state)
+    let orders = getCopy(database.orders)
+    if(state.fullname){
+      const fullnameLower = state.fullname.toLowerCase()
+      orders = orders.filter(x=>x.fullname.toLowerCase().includes(fullnameLower))
+    }
+    return {
+      orders: orders.slice(0,database.maxOrders),
+      currentPage: 1,
+      commonPage: Math.ceil(orders.length / database.maxOrders)
+    }
+  }
+
   window.Database = api
 
 
@@ -59,7 +75,6 @@
 
     if(localStorage.getItem('__CRM_DATABASE__')){
       Object.assign(database,JSON.parse(localStorage.getItem('__CRM_DATABASE__')))
-      console.log(database);
     }
     
   }

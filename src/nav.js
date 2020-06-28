@@ -1,4 +1,3 @@
-const state = {}
 
 function updateLastReviewedList(){
     const orders = Database.getLastReviewed()
