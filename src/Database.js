@@ -52,6 +52,18 @@
       const fullnameLower = state.fullname.toLowerCase()
       orders = orders.filter(x=>x.fullname.toLowerCase().includes(fullnameLower))
     }
+    if(state.good){
+      orders = orders.filter(x=>x.good === state.good)
+    }
+    if(state.status){
+      orders = orders.filter(x=>x.status === state.status)
+    }
+    if(state.minpirce){
+      orders = orders.filter(x=>x.minprice >= state.minprice)
+    }
+    if(state.maxpirce){
+      orders = orders.filter(x=>x.maxprice <= state.maxprice)
+    }
     return {
       orders: orders.slice(0,database.maxOrders),
       currentPage: 1,
