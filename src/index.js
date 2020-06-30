@@ -16,100 +16,32 @@ init();
 update();
 
 function init() {
-  document
-    .querySelector("[data-filter-maxprice]")
-    .addEventListener("keyup", function() {
+  const hashObject = Router.getHashObject()
+
+  byFilterNames(filterName=>{
+    if(hashObject[filterName]){
+      document.querySelector(`[data-filter-${filterName}]`).value = hashObject[filterName]
+      state[filterName] = hashObject[filterName]
+    }
+    const element = document.querySelector(`[data-filter-${filterName}]`)
+    console.log({element});
+    
+    element.addEventListener("keyup", filter)
+    element.addEventListener("change", filter)
+    function filter() {
       if (this.value) {
         setState({
-          maxprice: this.value
+          [filterName]: this.value
         });
       } else {
         setState({
-          maxprice: null
+          [filterName]: null
         });
       }
-    });
-    document
-    .querySelector("[data-filter-minprice]")
-    .addEventListener("keyup", function() {
-      if (this.value) {
-        setState({
-          minprice: this.value
-        });
-      } else {
-        setState({
-          minprice: null
-        });
-      }
-    });
-    document
-    .querySelector("[data-filter-fullname]")
-    .addEventListener("keyup", function() {
-      if (this.value) {
-        setState({
-          fullname: this.value
-        });
-      } else {
-        setState({
-          fullname: null
-        });
-      }
-    });
-  document
-    .querySelector("[data-filter-good]")
-    .addEventListener("change", function() {
-      if (this.value) {
-        setState({
-          good: this.value
-        });
-      } else {
-        setState({
-          good: null
-        });
-      }
-    });
-    document
-    .querySelector("[data-filter-maxdate]")
-    .addEventListener("change", function() {
-      if (this.value) {
-        setState({
-          maxdate: new Date(this.value).getTime()
-        });
-      } else {
-        setState({
-          maxdate: null
-        });
-      }
-    });
-    document
-    .querySelector("[data-filter-mindate]")
-    .addEventListener("change", function() {
-      if (this.value) {
-        setState({
-          mindate: new Date(this.value).getTime()
-        });
-      } else {
-        setState({
-          mindate: null
-        });
-      }
-    });
-    document
-    .querySelector("[data-filter-status]")
-    .addEventListener("change", function() {
-      if (this.value) {
-        console.log(this.value);
-        
-        setState({
-          status: this.value
-        });
-      } else {
-        setState({
-          status: null
-        });
-      }
-    });
+    }
+  })
 }
+
 function update() {
   updateLastReviewedList();
   const answer = Database.getOrders(state);
@@ -120,6 +52,15 @@ function update() {
 }
 function setState(obj) {
   Object.assign(state, obj);
+  const hashObject = {}
+
+  byFilterNames(filterName =>{
+    if(state[filterName]){
+      hashObject[filterName] = state[filterName]
+    }
+  })
+
+  Router.setHashObject(hashObject)
   update();
 }
 
@@ -153,4 +94,14 @@ function updateTable() {
     if (status === "back") return "danger";
     if (status === "archived") return "dark";
   }
+}
+
+
+function byFilterNames(handler){
+  const filterNames = ['fullname','good','status','minprice','maxprice','mindate','maxdate']
+  for(const filterName of filterNames){
+    handler(filterName)
+  }
+
+
 }
