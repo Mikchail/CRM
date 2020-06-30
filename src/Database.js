@@ -58,11 +58,21 @@
     if(state.status){
       orders = orders.filter(x=>x.status === state.status)
     }
-    if(state.minpirce){
-      orders = orders.filter(x=>x.minprice >= state.minprice)
+    
+    if(state.minprice){
+      console.log(state)
+      orders = orders.filter(x=>x.price >= state.minprice)
     }
-    if(state.maxpirce){
-      orders = orders.filter(x=>x.maxprice <= state.maxprice)
+    if(state.maxprice){
+      orders = orders.filter(x=>x.price <= state.maxprice)
+    }
+
+    if(state.mindate){
+      console.log(state)
+      orders = orders.filter(x=>x.date >= state.mindate)
+    }
+    if(state.maxdate){
+      orders = orders.filter(x=>x.date <= state.maxdate)
     }
     return {
       orders: orders.slice(0,database.maxOrders),

@@ -69,6 +69,32 @@ function init() {
       }
     });
     document
+    .querySelector("[data-filter-maxdate]")
+    .addEventListener("change", function() {
+      if (this.value) {
+        setState({
+          maxdate: new Date(this.value).getTime()
+        });
+      } else {
+        setState({
+          maxdate: null
+        });
+      }
+    });
+    document
+    .querySelector("[data-filter-mindate]")
+    .addEventListener("change", function() {
+      if (this.value) {
+        setState({
+          mindate: new Date(this.value).getTime()
+        });
+      } else {
+        setState({
+          mindate: null
+        });
+      }
+    });
+    document
     .querySelector("[data-filter-status]")
     .addEventListener("change", function() {
       if (this.value) {
