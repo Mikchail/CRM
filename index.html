@@ -15,11 +15,12 @@
 		<div class="row">
 			<nav class="col-md-2 d-none d-md-block bg-light sidebar" style="height: 100vh;">
 				<div class="sidebar-sticky">
-					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted ">Режимы</h6>
+					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted ">
+						Режимы</h6>
 
 					<ul class="nav flex-column">
 						<li class="nav-item">
-							<a class="nav-link active" href="index.html#">
+							<a class="nav-link active" href='index.html#{"status": ""}'>
 								<img src="./assets/data-collection.png" alt="" style="width: 30px">
 								Все заказы
 							</a>
@@ -50,8 +51,7 @@
 						</li>
 					</ul>
 
-					<h6
-						class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+					<h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
 						Последние просматриваемые</h6>
 					<ul class="nav flex-column mb-2" data-reviewed-list>
 						<li class="nav-item">
@@ -83,7 +83,8 @@
 			</nav>
 
 			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 d-flex flex-column">
-				<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+				<div
+					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 					<h1 class="h2">Заказы</h1>
 				</div>
 
@@ -105,7 +106,7 @@
 					</div>
 					<div class="form-group col">
 						<label>Статус:</label>
-						<select class="form-control"  data-filter-status>
+						<select class="form-control" data-filter-status>
 							<option value='' selected>Все</option>
 							<option value="new">Новые</option>
 							<option value="process">На исполнение</option>
@@ -115,12 +116,12 @@
 					</div>
 					<div class="form-group col">
 						<label>Сумма:</label>
-						<input class="form-control" type="number" placeholder="От"  data-filter-minprice>
+						<input class="form-control" type="number" placeholder="От" data-filter-minprice>
 						<input class="form-control" type="number" placeholder="До" data-filter-maxprice>
 					</div>
 					<div class="form-group col">
 						<label>Дата:</label>
-						<input class="form-control" type="date" data-filter-mindate >
+						<input class="form-control" type="date" data-filter-mindate>
 						<input class="form-control" type="date" data-filter-maxdate>
 					</div>
 				</div>
@@ -144,7 +145,9 @@
 								<td>Максим Анатольевич</td>
 								<td>Фотоальбом</td>
 								<td>1400,00</td>
-								<td><div class="badge badge-primary">new</div></td>
+								<td>
+									<div class="badge badge-primary">new</div>
+								</td>
 								<td>
 									<button class="btn btn-outline-primary btn-sm">Редактировать</button>
 								</td>
@@ -155,7 +158,9 @@
 								<td>Серьгей Дмитриевич</td>
 								<td>Бумага для принтера</td>
 								<td>510,00</td>
-								<td><div class="badge badge-warning">process</div></td>
+								<td>
+									<div class="badge badge-warning">process</div>
+								</td>
 								<td>
 									<button class="btn btn-outline-primary btn-sm">Редактировать</button>
 								</td>
@@ -166,7 +171,9 @@
 								<td>Ольга Арбузова</td>
 								<td>Краски для принетра</td>
 								<td>2100,00</td>
-								<td><div class="badge badge-warning">process</div></td>
+								<td>
+									<div class="badge badge-warning">process</div>
+								</td>
 								<td>
 									<button class="btn btn-outline-primary btn-sm">Редактировать</button>
 								</td>
@@ -177,7 +184,9 @@
 								<td>Максимус Валькиш</td>
 								<td>Полимерная ванна</td>
 								<td>785,00</td>
-								<td><div class="badge badge-danger">back</div></td>
+								<td>
+									<div class="badge badge-danger">back</div>
+								</td>
 								<td>
 									<button class="btn btn-outline-primary btn-sm">Редактировать</button>
 								</td>
@@ -188,7 +197,9 @@
 								<td>Ольга Арбузова</td>
 								<td>Фотоальбом</td>
 								<td>1400,00</td>
-								<td><div class="badge badge-dark">archived</div></td>
+								<td>
+									<div class="badge badge-dark">archived</div>
+								</td>
 								<td>
 									<button class="btn btn-outline-primary btn-sm">Редактировать</button>
 								</td>
@@ -199,17 +210,17 @@
 				</div>
 				<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center">
-					  <li class="page-item disabled">
-						<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Назад</a>
-					  </li>
-					  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-					  <li class="page-item"><a class="page-link" href="#">2</a></li>
-					  <li class="page-item"><a class="page-link" href="#">3</a></li>
-					  <li class="page-item">
-						<a class="page-link" href="#">Вперед</a>
-					  </li>
+						<li class="page-item disabled">
+							<a class="page-link" href="#" tabindex="-1" aria-disabled="true">Назад</a>
+						</li>
+						<li class="page-item active"><a class="page-link" href="#">1</a></li>
+						<li class="page-item"><a class="page-link" href="#">2</a></li>
+						<li class="page-item"><a class="page-link" href="#">3</a></li>
+						<li class="page-item">
+							<a class="page-link" href="#">Вперед</a>
+						</li>
 					</ul>
-				  </nav>
+				</nav>
 			</main>
 		</div>
 	</div>
@@ -227,22 +238,26 @@
 			<td>%FULLNAME%</td>
 			<td>%GOOD%</td>
 			<td>%PRICE%</td>
-			<td><div class="badge badge-%STATUS_COLOR%">%STATUS%</div></td>
 			<td>
-				<button class="btn btn-outline-primary btn-sm">Редактировать</button>
+				<div class="badge badge-%STATUS_COLOR%">%STATUS%</div>
+			</td>
+			<td>
+				<a href='editor.html#{"orderId: %ID%"}' class="">
+					<button class="btn btn-outline-primary btn-sm">Редактировать</button>
+				</a>
 			</td>
 			<td>%DATE%</td>
 		</tr>
 	</template>
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
 		integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
-	</script>
+		</script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
 		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-	</script>
+		</script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
 		integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
-	</script>
+		</script>
 	<script src="src/EventEmitter.js"></script>
 	<script src="src/Router.js"></script>
 	<script src="src/Database.js"></script>

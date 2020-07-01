@@ -12,6 +12,11 @@ const state = {
 };
 
 Database.addEventListener("update", update);
+Router.addEventListener("update", ()=>{
+      
+  const hashObject = Router.getHashObject()
+  setState(hashObject)
+});
 init();
 update();
 
@@ -24,7 +29,6 @@ function init() {
       state[filterName] = hashObject[filterName]
     }
     const element = document.querySelector(`[data-filter-${filterName}]`)
-    console.log({element});
     
     element.addEventListener("keyup", filter)
     element.addEventListener("change", filter)
@@ -44,6 +48,16 @@ function init() {
 
 function update() {
   updateLastReviewedList();
+
+
+  byFilterNames(filterName => {
+    if(state[filterName]){
+      const element = document.querySelector(`[data-filter-${filterName}]`)
+      if(element.value !== state[filterName]){
+        element.value = state[filterName]
+      }
+    }
+  })
   const answer = Database.getOrders(state);
   state.orders = answer.orders;
   state.currentPage = answer.currentPage;

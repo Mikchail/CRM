@@ -14,6 +14,8 @@
       return JSON.parse(decodeURI(location.hash).slice(1))
   }
   api.setHashObject = function(obj = null){
+    console.log(obj);
+    
       if(!obj || !Object.keys(obj).length){
         location.hash = ''
       } else {
