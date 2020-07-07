@@ -75,8 +75,11 @@
       orders = orders.filter(x=>x.date <= state.maxdate)
     }
     return {
-      orders: orders.slice(0,database.maxOrders),
-      currentPage: 1,
+      orders: orders.slice(
+        (state.currentPage - 1) * database.maxOrders,
+        state.currentPage * database.maxOrders
+        ),
+      currentPage: state.currentPage,
       commonPage: Math.ceil(orders.length / database.maxOrders)
     }
   }
