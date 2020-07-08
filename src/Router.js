@@ -6,6 +6,7 @@
 
   window.addEventListener('popstate',()=>api.emit("update"))
   api.getHashObject = function(){
+      
       if(!location.hash){
         return {}
       }

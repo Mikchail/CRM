@@ -23,6 +23,19 @@
   api.getLastReviewed = function(){
     return database.lastReviewed.orderIds.map(x => api.getOrderById(x))
   }
+
+  api.updateOrderById = function updateOrderById(orderId,updated){
+      const order = database.orders.find(x=>x.id === orderId)
+      console.log(orderId);
+       
+      order.fullname = updated.fullname
+      order.date = updated.date
+      order.good = updated.good
+      order.status = updated.status
+      order.price = updated.price
+
+      save()
+  }
   api.addLastReviewed = function addLastReviewed(orderId){
   
     if(database.lastReviewed.orderIds.includes(orderId)){
@@ -44,6 +57,17 @@
     api.emit("update")
   }
 
+  api.createOrder = function greateOrder(order){
+    order =  getCopy(order)
+    order.status = 'new'
+    order.date = Date.now()
+    order.id = Math.max(0, ...database.orders.map(x=>x.id)) + 1
+    
+    database.orders.push(order)
+    save()
+    api.emit('update')
+    return order.id
+  }
 
   api.getOrders = function getOrders(state){
     state = getCopy(state)
@@ -74,16 +98,19 @@
     if(state.maxdate){
       orders = orders.filter(x=>x.date <= state.maxdate)
     }
+    
+    let maxPage = Math.ceil(orders.length / database.maxOrders)
+    console.log( state.currentPage > maxPage ? maxPage : state.currentPage,);
+
     return {
       orders: orders.slice(
         (state.currentPage - 1) * database.maxOrders,
         state.currentPage * database.maxOrders
         ),
-      currentPage: state.currentPage,
-      commonPage: Math.ceil(orders.length / database.maxOrders)
+      currentPage: state.currentPage > maxPage ? maxPage : state.currentPage,
+      commonPage: maxPage
     }
   }
-
   window.Database = api
 
 
@@ -93,6 +120,7 @@
 
 
   function save(){
+    console.log(database)
     localStorage.setItem('__CRM_DATABASE__',JSON.stringify(database))
   }
   function load(){

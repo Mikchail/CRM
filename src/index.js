@@ -141,6 +141,7 @@ function updateTable() {
       .replace(/%DATE%/g, dateFormator.format(new Date(order.date)));
     orderListElement.append(trElement);
   }
+  
   function getStatusColor(status) {
     if (status === "new") return "primary";
     if (status === "process") return "warning";
